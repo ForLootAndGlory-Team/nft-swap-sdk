@@ -40,7 +40,6 @@ import {
   ERC1155ORDER_STRUCT_NAME,
   ERC1155ORDER_STRUCT_ABI,
   FEE_ABI,
-  PROPERTY_ABI,
   ETH_ADDRESS_AS_ERC20,
 } from './constants';
 
@@ -63,13 +62,12 @@ export const signOrderWithEoaWallet = async (
     const domain = {
       chainId: chainId,
       verifyingContract: exchangeContractAddress,
-      name: 'ZeroEx',
+      name: 'ProxyMulti',
       version: '1.0.0',
     };
     const types = {
       [ERC1155ORDER_STRUCT_NAME]: ERC1155ORDER_STRUCT_ABI,
       Fee: FEE_ABI,
-      Property: PROPERTY_ABI,
     };
     const value = order;
 
@@ -86,13 +84,12 @@ export const signOrderWithEoaWallet = async (
     const domain = {
       chainId: chainId,
       verifyingContract: exchangeContractAddress,
-      name: 'ZeroEx',
+      name: 'ProxyMulti',
       version: '1.0.0',
     };
     const types = {
       [ERC721ORDER_STRUCT_NAME]: ERC721ORDER_STRUCT_ABI,
       Fee: FEE_ABI,
-      Property: PROPERTY_ABI,
     };
     const value = order;
 
@@ -119,13 +116,12 @@ export const preSignOrder = async (
     const domain = {
       chainId: chainId,
       verifyingContract: exchangeContractAddress,
-      name: 'ZeroEx',
+      name: 'ProxyMulti',
       version: '1.0.0',
     };
     const types = {
       [ERC1155ORDER_STRUCT_NAME]: ERC1155ORDER_STRUCT_ABI,
       Fee: FEE_ABI,
-      Property: PROPERTY_ABI,
     };
     const value = order;
 
@@ -142,13 +138,12 @@ export const preSignOrder = async (
     const domain = {
       chainId: chainId,
       verifyingContract: exchangeContractAddress,
-      name: 'ZeroEx',
+      name: 'ProxyMulti',
       version: '1.0.0',
     };
     const types = {
       [ERC721ORDER_STRUCT_NAME]: ERC721ORDER_STRUCT_ABI,
       Fee: FEE_ABI,
-      Property: PROPERTY_ABI,
     };
     const value = order;
 
@@ -403,12 +398,6 @@ export const generateErc721Order = (
     erc20Token: erc20.tokenAddress.toLowerCase(),
     erc20TokenAmount: erc20.amount,
     maker: orderData.maker.toLowerCase(),
-    // Defaults not required...
-    erc721TokenProperties:
-      orderData.tokenProperties?.map((property) => ({
-        propertyData: property.propertyData,
-        propertyValidator: property.propertyValidator,
-      })) ?? [],
     fees:
       orderData.fees?.map((x) => {
         return {
@@ -453,12 +442,6 @@ export const generateErc1155Order = (
     erc20Token: erc20.tokenAddress.toLowerCase(),
     erc20TokenAmount: erc20.amount,
     maker: orderData.maker.toLowerCase(),
-    // Defaults not required...
-    erc1155TokenProperties:
-      orderData.tokenProperties?.map((property) => ({
-        propertyData: property.propertyData.toString(),
-        propertyValidator: property.propertyValidator,
-      })) ?? [],
     fees:
       orderData.fees?.map((fee) => {
         return {

@@ -84,10 +84,6 @@ describe('NFTSwapV4', () => {
     const signedOrder = (await nftSwapperMaker.signOrder(
       v4Erc721Order
     )) as SignedERC721OrderStruct;
-
-    expect(signedOrder.erc721TokenProperties[0].propertyValidator).toEqual(
-      NULL_ADDRESS
-    );
     // console.log('erc721 signatuee', signedOrder.signature);
     // expect(signedOrder.signature.signatureType.toString()).toEqual('2');
 

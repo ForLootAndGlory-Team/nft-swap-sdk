@@ -70,23 +70,6 @@ export const ERC721_TRANSFER_FROM_DATA = [
             name: 'erc721TokenId',
             type: 'uint256',
           },
-          {
-            components: [
-              {
-                internalType: 'contract IPropertyValidator',
-                name: 'propertyValidator',
-                type: 'address',
-              },
-              {
-                internalType: 'bytes',
-                name: 'propertyData',
-                type: 'bytes',
-              },
-            ],
-            internalType: 'struct LibNFTOrder.Property[]',
-            name: 'erc721TokenProperties',
-            type: 'tuple[]',
-          },
         ],
         internalType: 'struct LibNFTOrder.ERC721Order',
         name: 'order',
@@ -202,23 +185,6 @@ export const ERC1155_TRANSFER_FROM_DATA = [
             internalType: 'uint256',
             name: 'erc1155TokenId',
             type: 'uint256',
-          },
-          {
-            components: [
-              {
-                internalType: 'contract IPropertyValidator',
-                name: 'propertyValidator',
-                type: 'address',
-              },
-              {
-                internalType: 'bytes',
-                name: 'propertyData',
-                type: 'bytes',
-              },
-            ],
-            internalType: 'struct LibNFTOrder.Property[]',
-            name: 'erc1155TokenProperties',
-            type: 'tuple[]',
           },
           {
             internalType: 'uint128',

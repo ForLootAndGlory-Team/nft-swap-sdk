@@ -18,7 +18,6 @@ export const ERC721ORDER_STRUCT_ABI = [
   { type: 'Fee[]', name: 'fees' },
   { type: 'address', name: 'erc721Token' },
   { type: 'uint256', name: 'erc721TokenId' },
-  { type: 'Property[]', name: 'erc721TokenProperties' },
 ];
 
 export const EIP1155_DOMAIN_PARAMETERS = [
@@ -40,7 +39,6 @@ export const ERC1155ORDER_STRUCT_ABI = [
   { type: 'Fee[]', name: 'fees' },
   { type: 'address', name: 'erc1155Token' },
   { type: 'uint256', name: 'erc1155TokenId' },
-  { type: 'Property[]', name: 'erc1155TokenProperties' },
   { type: 'uint128', name: 'erc1155TokenAmount' },
 ];
 
@@ -48,11 +46,6 @@ export const FEE_ABI = [
   { type: 'address', name: 'recipient' },
   { type: 'uint256', name: 'amount' },
   { type: 'bytes', name: 'feeData' },
-];
-
-export const PROPERTY_ABI = [
-  { type: 'address', name: 'propertyValidator' },
-  { type: 'bytes', name: 'propertyData' },
 ];
 
 export const ETH_ADDRESS_AS_ERC20 =

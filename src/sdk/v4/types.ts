@@ -15,16 +15,6 @@ export type FeeStructSerialized = {
   feeData: string;
 };
 
-export type PropertyStruct = {
-  propertyValidator: string;
-  propertyData: string | Array<number>;
-};
-
-export type PropertyStructSerialized = {
-  propertyValidator: string;
-  propertyData: string | Array<number>;
-};
-
 export type ERC1155OrderStruct = {
   direction: BigNumberish;
   maker: string;
@@ -36,7 +26,6 @@ export type ERC1155OrderStruct = {
   fees: FeeStruct[];
   erc1155Token: string;
   erc1155TokenId: BigNumberish;
-  erc1155TokenProperties: PropertyStruct[];
   erc1155TokenAmount: BigNumberish;
 };
 
@@ -51,7 +40,6 @@ export type ERC1155OrderStructSerialized = {
   fees: FeeStructSerialized[];
   erc1155Token: string;
   erc1155TokenId: string;
-  erc1155TokenProperties: PropertyStructSerialized[];
   erc1155TokenAmount: string;
 };
 
@@ -66,7 +54,6 @@ export type ERC721OrderStruct = {
   fees: FeeStruct[];
   erc721Token: string;
   erc721TokenId: BigNumberish;
-  erc721TokenProperties: PropertyStruct[];
 };
 
 export type ERC721OrderStructSerialized = {
@@ -80,7 +67,6 @@ export type ERC721OrderStructSerialized = {
   fees: FeeStructSerialized[];
   erc721Token: string;
   erc721TokenId: string;
-  erc721TokenProperties: PropertyStructSerialized[];
 };
 
 export type UserFacingFeeStruct = {
@@ -101,7 +87,6 @@ export interface OrderStructOptionsCommon {
   // erc20Token: string;
   // erc20TokenAmount: BigNumberish;
   fees: UserFacingFeeStruct[];
-  tokenProperties: PropertyStruct[];
 }
 
 export interface OrderStructOptionsCommonStrict {
@@ -114,18 +99,12 @@ export interface OrderStructOptionsCommonStrict {
   expiry?: Date | number | string;
   nonce?: BigNumberish;
   fees?: UserFacingFeeStruct[];
-  tokenProperties?: PropertyStruct[];
 }
 
 export interface Fee {
   recipient: string;
   amount: BigNumber;
   feeData: string;
-}
-
-export interface Property {
-  propertyValidator: string;
-  propertyData: string;
 }
 
 export type NftOrderV4 = ERC1155OrderStruct | ERC721OrderStruct;

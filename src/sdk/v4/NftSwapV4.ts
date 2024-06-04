@@ -67,7 +67,6 @@ import {
 } from './orderbook';
 import { getWrappedNativeToken } from '../../utils/addresses';
 import { DIRECTION_MAPPING, OrderStatusV4, TradeDirection } from './enums';
-import { CONTRACT_ORDER_VALIDATOR } from './properties';
 import { ETH_ADDRESS_AS_ERC20 } from './constants';
 import { ZERO_AMOUNT } from '../../utils/eth';
 
@@ -582,10 +581,6 @@ class NftSwapV4 implements INftSwapV4 {
       erc20ToSell,
       'buy',
       makerAddress,
-      {
-        // Add the token property of 'collection', so this order will be valid for any nft in the collection
-        tokenProperties: [CONTRACT_ORDER_VALIDATOR],
-      }
     );
   };
 
@@ -884,17 +879,6 @@ class NftSwapV4 implements INftSwapV4 {
           fillOrderOverrides?.fillOrderWithNativeTokenInsteadOfWrappedToken ??
           false;
 
-        if (signedOrder.erc1155TokenProperties.length > 0) {
-          // property based order, let's make sure they've specifically provided a tokenIdToSellForCollectionOrder
-          if (
-            fillOrderOverrides?.tokenIdToSellForCollectionOrder === undefined
-          ) {
-            throw new Error(
-              'Collection order missing NFT tokenId to fill with. Specify in fillOrderOverrides.tokenIdToSellForCollectionOrder'
-            );
-          }
-        }
-
         // Otherwise, taker is selling the nft (and buying an ERC20)
         return this.exchangeProxy.sellERC1155(
           signedOrder,
@@ -927,17 +911,6 @@ class NftSwapV4 implements INftSwapV4 {
         let unwrapNativeToken: boolean =
           fillOrderOverrides?.fillOrderWithNativeTokenInsteadOfWrappedToken ??
           false;
-
-        if (signedOrder.erc721TokenProperties.length > 0) {
-          // property based order, let's make sure they've specifically provided a tokenIdToSellForCollectionOrder
-          if (
-            fillOrderOverrides?.tokenIdToSellForCollectionOrder === undefined
-          ) {
-            throw new Error(
-              'Collection order missing NFT tokenId to fill with. Specify in fillOrderOverrides.tokenIdToSellForCollectionOrder'
-            );
-          }
-        }
 
         // Otherwise, taker is selling the nft (and buying an ERC20)
         return this.exchangeProxy.sellERC721(
@@ -975,7 +948,6 @@ class NftSwapV4 implements INftSwapV4 {
       // If maker is selling an NFT, taker wants to 'buy' nft
       if (
         order.direction === TradeDirection.BuyNFT &&
-        order.erc1155TokenProperties.length > 0 &&
         fillOrderOverrides?.tokenIdToSellForCollectionOrder === undefined
       ) {
         // Property based order, let's make sure they've specifically provided a tokenIdToSellForCollectionOrder
@@ -990,7 +962,6 @@ class NftSwapV4 implements INftSwapV4 {
       // If maker is selling an NFT, taker wants to 'buy' nft
       if (
         order.direction === TradeDirection.BuyNFT &&
-        order.erc721TokenProperties.length > 0 &&
         fillOrderOverrides?.tokenIdToSellForCollectionOrder === undefined
       ) {
         // property based order, let's make sure they've specifically provided a tokenIdToSellForCollectionOrder

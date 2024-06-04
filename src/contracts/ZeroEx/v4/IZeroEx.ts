@@ -41,16 +41,6 @@ export declare namespace LibNFTOrder {
     feeData: string;
   };
 
-  export type PropertyStruct = {
-    propertyValidator: PromiseOrValue<string>;
-    propertyData: PromiseOrValue<BytesLike>;
-  };
-
-  export type PropertyStructOutput = [string, string] & {
-    propertyValidator: string;
-    propertyData: string;
-  };
-
   export type ERC1155OrderStruct = {
     direction: PromiseOrValue<BigNumberish>;
     maker: PromiseOrValue<string>;
@@ -62,7 +52,6 @@ export declare namespace LibNFTOrder {
     fees: LibNFTOrder.FeeStruct[];
     erc1155Token: PromiseOrValue<string>;
     erc1155TokenId: PromiseOrValue<BigNumberish>;
-    erc1155TokenProperties: LibNFTOrder.PropertyStruct[];
     erc1155TokenAmount: PromiseOrValue<BigNumberish>;
   };
 
@@ -77,7 +66,6 @@ export declare namespace LibNFTOrder {
     LibNFTOrder.FeeStructOutput[],
     string,
     BigNumber,
-    LibNFTOrder.PropertyStructOutput[],
     BigNumber
   ] & {
     direction: number;
@@ -90,7 +78,6 @@ export declare namespace LibNFTOrder {
     fees: LibNFTOrder.FeeStructOutput[];
     erc1155Token: string;
     erc1155TokenId: BigNumber;
-    erc1155TokenProperties: LibNFTOrder.PropertyStructOutput[];
     erc1155TokenAmount: BigNumber;
   };
 
@@ -105,7 +92,6 @@ export declare namespace LibNFTOrder {
     fees: LibNFTOrder.FeeStruct[];
     erc721Token: PromiseOrValue<string>;
     erc721TokenId: PromiseOrValue<BigNumberish>;
-    erc721TokenProperties: LibNFTOrder.PropertyStruct[];
   };
 
   export type ERC721OrderStructOutput = [
@@ -118,8 +104,7 @@ export declare namespace LibNFTOrder {
     BigNumber,
     LibNFTOrder.FeeStructOutput[],
     string,
-    BigNumber,
-    LibNFTOrder.PropertyStructOutput[]
+    BigNumber
   ] & {
     direction: number;
     maker: string;
@@ -131,7 +116,6 @@ export declare namespace LibNFTOrder {
     fees: LibNFTOrder.FeeStructOutput[];
     erc721Token: string;
     erc721TokenId: BigNumber;
-    erc721TokenProperties: LibNFTOrder.PropertyStructOutput[];
   };
 
   export type OrderInfoStruct = {
@@ -1782,7 +1766,6 @@ export interface ERC1155OrderPreSignedEventObject {
   fees: LibNFTOrder.FeeStructOutput[];
   erc1155Token: string;
   erc1155TokenId: BigNumber;
-  erc1155TokenProperties: LibNFTOrder.PropertyStructOutput[];
   erc1155TokenAmount: BigNumber;
 }
 export type ERC1155OrderPreSignedEvent = TypedEvent<
@@ -1797,7 +1780,6 @@ export type ERC1155OrderPreSignedEvent = TypedEvent<
     LibNFTOrder.FeeStructOutput[],
     string,
     BigNumber,
-    LibNFTOrder.PropertyStructOutput[],
     BigNumber
   ],
   ERC1155OrderPreSignedEventObject
@@ -1858,7 +1840,6 @@ export interface ERC721OrderPreSignedEventObject {
   fees: LibNFTOrder.FeeStructOutput[];
   erc721Token: string;
   erc721TokenId: BigNumber;
-  erc721TokenProperties: LibNFTOrder.PropertyStructOutput[];
 }
 export type ERC721OrderPreSignedEvent = TypedEvent<
   [
@@ -1871,8 +1852,7 @@ export type ERC721OrderPreSignedEvent = TypedEvent<
     BigNumber,
     LibNFTOrder.FeeStructOutput[],
     string,
-    BigNumber,
-    LibNFTOrder.PropertyStructOutput[]
+    BigNumber
   ],
   ERC721OrderPreSignedEventObject
 >;
@@ -4337,7 +4317,6 @@ export interface IZeroEx extends BaseContract {
       fees?: null,
       erc1155Token?: null,
       erc1155TokenId?: null,
-      erc1155TokenProperties?: null,
       erc1155TokenAmount?: null
     ): ERC1155OrderPreSignedEventFilter;
     ERC1155OrderPreSigned(
@@ -4351,7 +4330,6 @@ export interface IZeroEx extends BaseContract {
       fees?: null,
       erc1155Token?: null,
       erc1155TokenId?: null,
-      erc1155TokenProperties?: null,
       erc1155TokenAmount?: null
     ): ERC1155OrderPreSignedEventFilter;
 
@@ -4398,7 +4376,6 @@ export interface IZeroEx extends BaseContract {
       fees?: null,
       erc721Token?: null,
       erc721TokenId?: null,
-      erc721TokenProperties?: null
     ): ERC721OrderPreSignedEventFilter;
     ERC721OrderPreSigned(
       direction?: null,
@@ -4411,7 +4388,6 @@ export interface IZeroEx extends BaseContract {
       fees?: null,
       erc721Token?: null,
       erc721TokenId?: null,
-      erc721TokenProperties?: null
     ): ERC721OrderPreSignedEventFilter;
 
     'LimitOrderFilled(bytes32,address,address,address,address,address,uint128,uint128,uint128,uint256,bytes32)'(
