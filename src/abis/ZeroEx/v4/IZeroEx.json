@@ -5835,86 +5835,6 @@
             "type": "tuple"
           },
           {
-            "internalType": "uint256",
-            "name": "erc1155TokenId",
-            "type": "uint256"
-          }
-        ],
-        "name": "validateERC1155OrderProperties",
-        "outputs": [],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "components": [
-              {
-                "internalType": "enum LibNFTOrder.TradeDirection",
-                "name": "direction",
-                "type": "uint8"
-              },
-              { "internalType": "address", "name": "maker", "type": "address" },
-              { "internalType": "address", "name": "taker", "type": "address" },
-              {
-                "internalType": "uint256",
-                "name": "expiry",
-                "type": "uint256"
-              },
-              { "internalType": "uint256", "name": "nonce", "type": "uint256" },
-              {
-                "internalType": "contract IERC20TokenV06",
-                "name": "erc20Token",
-                "type": "address"
-              },
-              {
-                "internalType": "uint256",
-                "name": "erc20TokenAmount",
-                "type": "uint256"
-              },
-              {
-                "components": [
-                  {
-                    "internalType": "address",
-                    "name": "recipient",
-                    "type": "address"
-                  },
-                  {
-                    "internalType": "uint256",
-                    "name": "amount",
-                    "type": "uint256"
-                  },
-                  {
-                    "internalType": "bytes",
-                    "name": "feeData",
-                    "type": "bytes"
-                  }
-                ],
-                "internalType": "struct LibNFTOrder.Fee[]",
-                "name": "fees",
-                "type": "tuple[]"
-              },
-              {
-                "internalType": "contract IERC1155Token",
-                "name": "erc1155Token",
-                "type": "address"
-              },
-              {
-                "internalType": "uint256",
-                "name": "erc1155TokenId",
-                "type": "uint256"
-              },
-              {
-                "internalType": "uint128",
-                "name": "erc1155TokenAmount",
-                "type": "uint128"
-              }
-            ],
-            "internalType": "struct LibNFTOrder.ERC1155Order",
-            "name": "order",
-            "type": "tuple"
-          },
-          {
             "components": [
               {
                 "internalType": "enum LibSignature.SignatureType",
@@ -5931,81 +5851,6 @@
           }
         ],
         "name": "validateERC1155OrderSignature",
-        "outputs": [],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "components": [
-              {
-                "internalType": "enum LibNFTOrder.TradeDirection",
-                "name": "direction",
-                "type": "uint8"
-              },
-              { "internalType": "address", "name": "maker", "type": "address" },
-              { "internalType": "address", "name": "taker", "type": "address" },
-              {
-                "internalType": "uint256",
-                "name": "expiry",
-                "type": "uint256"
-              },
-              { "internalType": "uint256", "name": "nonce", "type": "uint256" },
-              {
-                "internalType": "contract IERC20TokenV06",
-                "name": "erc20Token",
-                "type": "address"
-              },
-              {
-                "internalType": "uint256",
-                "name": "erc20TokenAmount",
-                "type": "uint256"
-              },
-              {
-                "components": [
-                  {
-                    "internalType": "address",
-                    "name": "recipient",
-                    "type": "address"
-                  },
-                  {
-                    "internalType": "uint256",
-                    "name": "amount",
-                    "type": "uint256"
-                  },
-                  {
-                    "internalType": "bytes",
-                    "name": "feeData",
-                    "type": "bytes"
-                  }
-                ],
-                "internalType": "struct LibNFTOrder.Fee[]",
-                "name": "fees",
-                "type": "tuple[]"
-              },
-              {
-                "internalType": "contract IERC721Token",
-                "name": "erc721Token",
-                "type": "address"
-              },
-              {
-                "internalType": "uint256",
-                "name": "erc721TokenId",
-                "type": "uint256"
-              }
-            ],
-            "internalType": "struct LibNFTOrder.ERC721Order",
-            "name": "order",
-            "type": "tuple"
-          },
-          {
-            "internalType": "uint256",
-            "name": "erc721TokenId",
-            "type": "uint256"
-          }
-        ],
-        "name": "validateERC721OrderProperties",
         "outputs": [],
         "stateMutability": "view",
         "type": "function"
@@ -6937,25 +6782,11 @@
             "data": "Arbitrary data forwarded from swap() caller. An ABI-encoded        struct of: inputToken, outputToken, fee, payer"
           }
         },
-        "validateERC1155OrderProperties((uint8,address,address,uint256,uint256,address,uint256,(address,uint256,bytes)[],address,uint256,(address,bytes)[],uint128),uint256)": {
-          "details": "If the given order is buying an ERC1155 asset, checks      whether or not the given token ID satisfies the required      properties specified in the order. If the order does not      specify any properties, this function instead checks      whether the given token ID matches the ID in the order.      Reverts if any checks fail, or if the order is selling      an ERC1155 asset.",
-          "params": {
-            "erc1155TokenId": "The ID of the ERC1155 asset.",
-            "order": "The ERC1155 order."
-          }
-        },
         "validateERC1155OrderSignature((uint8,address,address,uint256,uint256,address,uint256,(address,uint256,bytes)[],address,uint256,(address,bytes)[],uint128),(uint8,uint8,bytes32,bytes32))": {
           "details": "Checks whether the given signature is valid for the      the given ERC1155 order. Reverts if not.",
           "params": {
             "order": "The ERC1155 order.",
             "signature": "The signature to validate."
-          }
-        },
-        "validateERC721OrderProperties((uint8,address,address,uint256,uint256,address,uint256,(address,uint256,bytes)[],address,uint256,(address,bytes)[]),uint256)": {
-          "details": "If the given order is buying an ERC721 asset, checks      whether or not the given token ID satisfies the required      properties specified in the order. If the order does not      specify any properties, this function instead checks      whether the given token ID matches the ID in the order.      Reverts if any checks fail, or if the order is selling      an ERC721 asset.",
-          "params": {
-            "erc721TokenId": "The ID of the ERC721 asset.",
-            "order": "The ERC721 order."
           }
         },
         "validateERC721OrderSignature((uint8,address,address,uint256,uint256,address,uint256,(address,uint256,bytes)[],address,uint256,(address,bytes)[]),(uint8,uint8,bytes32,bytes32))": {
