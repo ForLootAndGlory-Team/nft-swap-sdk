@@ -1,20 +1,4 @@
 import flatten from 'lodash/flatten';
-import type { ContractTransaction } from '@ethersproject/contracts';
-import { BaseProvider, Provider } from '@ethersproject/providers';
-import {
-  arrayify,
-  hexConcat,
-  hexDataLength,
-  hexDataSlice,
-  hexlify,
-  joinSignature,
-  splitSignature,
-} from '@ethersproject/bytes';
-import { verifyTypedData } from '@ethersproject/wallet';
-import { _TypedDataEncoder } from '@ethersproject/hash';
-import { BigNumber } from '@ethersproject/bignumber';
-import { Interface } from '@ethersproject/abi';
-import type { Signer, TypedDataSigner } from '@ethersproject/abstract-signer';
 import {
   generateOrderFromAssetDatas,
   generateTimeBasedSalt,
@@ -64,6 +48,10 @@ import type {
   PayableOverrides,
   TransactionOverrides,
 } from '../common/types';
+import { _TypedDataEncoder, arrayify, hexConcat, hexDataLength, hexDataSlice, hexlify, Interface, joinSignature, splitSignature, verifyTypedData } from 'ethers/lib/utils';
+import { BigNumber, ContractTransaction, Signer } from 'ethers';
+import { TypedDataSigner } from '@ethersproject/abstract-signer';
+import { BaseProvider, Provider } from '@ethersproject/providers';
 
 export const cancelOrder = (
   exchangeContract: ExchangeContract,

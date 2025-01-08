@@ -263,7 +263,7 @@ class NftSwapV3 implements INftSwapV3 {
       signerToUser,
       this.provider,
       this.chainId,
-      this.exchangeContract.address,
+      this.exchangeContractAddress,
       signingOptions
     );
   };
@@ -360,7 +360,7 @@ class NftSwapV3 implements INftSwapV3 {
   }
 
   public getOrderHash = (order: Order) => {
-    return _hashOrder(order, this.chainId, this.exchangeContract.address);
+    return _hashOrder(order, this.chainId, this.exchangeContractAddress);
   };
 
   public getTypedData = (
